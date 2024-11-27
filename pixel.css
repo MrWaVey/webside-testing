@@ -13,12 +13,14 @@ header {
     margin-top: 20px; /* Gir litt plass på toppen */
     margin-bottom: 20px;
     width: 100%;
+    color: white;
 }
 
 header a {
     display: inline-block;
     margin-top: 10px;
     font-size: 16px;
+    color: white;
 }
 
 /* Center content and give some space between sections */
@@ -28,6 +30,7 @@ header a {
     flex: 1;
     padding: 20px;
     margin-bottom: 20px;
+    color: white;
 }
 
 #canvas-container {
@@ -35,12 +38,13 @@ header a {
 }
 
 canvas {
-    border: 1px solid #000;
+    border: 1px solid #ffffff;
 }
 
 .info {
     font-size: 1.2em;
     margin-top: 10px;
+    color: white;
 }
 
 #binaryCodeContainer {
