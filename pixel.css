@@ -6,6 +6,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #374151;
+    color: white; /* Endrer tekstfargen til hvit for hele siden */
 }
 
 header {
@@ -19,6 +20,7 @@ header a {
     display: inline-block;
     margin-top: 10px;
     font-size: 16px;
+    color: white; /* Gjør lenken hvit */
 }
 
 /* For the two sections (left and right) */
@@ -62,6 +64,9 @@ canvas {
 
 #binaryCodeContainer button {
     margin-top: 10px;
+    color: white; /* Gjør teksten på knappen hvit */
+    background-color: #374151; /* Gir knappene en mørk bakgrunn for kontrast */
+    border: 1px solid #ffffff; /* Gir knappene en hvit kant */
 }
 
 /* For image and content placement */
