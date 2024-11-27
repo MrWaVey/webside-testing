@@ -5,9 +5,16 @@ body {
     margin: 20px;
     gap: 20px;
 }
-head{
-    width: 200px;
+header {
     text-align: center;
+    margin-bottom: 20px; /* Adds space below the header */
+}
+
+/* Style the anchor link */
+header a {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
 }
 #left-section, #right-section {
     display: flex;
