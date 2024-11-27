@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Binary and Binary to Image</title>
+    <link rel="stylesheet" href="pixel.css">
+</head>
+<body>
+    <!-- Left Section: Image to Binary Code -->
+    <div id="left-section">
+        <h2>Convert Image to Binary Code</h2>
+
+        <!-- Image upload input -->
+        <label for="imageUpload">Upload an image:</label>
+        <input type="file" id="imageUpload" accept="image/*"><br><br>
+
+        <!-- Display the image dimensions -->
+        <div id="imageDimensions" class="info"></div>
+
+        <!-- Display the binary code here -->
+        <div id="binaryCodeContainer">
+            <label for="binaryCode">Binary Code:</label><br>
+            <textarea id="binaryCode" rows="10" cols="30" readonly placeholder="Binary data will appear here..."></textarea><br><br>
+            <button onclick="copyBinaryCode()">Copy Binary Code</button>
+        </div>
+    </div>
+
+    <!-- Right Section: Binary Code to Image -->
+    <div id="right-section">
+        <h2>Binary Code to Image</h2>
+        
+        <!-- Inputs for width, height, and binary code -->
+        <div class="flex-content">
+            <label for="width">Width (in pixels):</label>
+            <input type="number" id="width" value="8" min="1"><br><br>
+
+            <label for="height">Height (in pixels):</label>
+            <input type="number" id="height" value="8" min="1"><br><br>
+
+            <label for="binary">Binary Code (0 = white, 1 = black):</label><br>
+            <textarea id="binary" rows="5" cols="30" placeholder="Enter binary data here..."></textarea><br><br>
+
+            <button onclick="generateImage()">Generate Image</button>
+        </div>
+
+        <!-- Canvas to display the generated image -->
+        <div id="canvas-container" class="flex-image">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle image upload and conversion to binary
+        document.getElementById('imageUpload').addEventListener('change', handleImageUpload);
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    // Convert image to binary when it loads
+                    const binaryCode = imageToBinary(img);
+                    const width = img.width;
+                    const height = img.height;
+
+                    // Display image dimensions
+                    document.getElementById('imageDimensions').textContent = `Image dimensions: ${width} x ${height} pixels`;
+
+                    // Display the binary code
+                    document.getElementById('binaryCode').value = binaryCode;
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Function to convert image to binary string (black=1, white=0)
+        function imageToBinary(image) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0);
+
+            const imageData = ctx.getImageData(0, 0, image.width, image.height);
+            const pixels = imageData.data;
+            let binaryString = '';
+
+            // Threshold to determine black and white (simple grayscale threshold)
+            const threshold = 128;  // Threshold for black/white distinction
+
+            for (let i = 0; i < pixels.length; i += 4) {
+                const r = pixels[i];     // Red
+                const g = pixels[i + 1]; // Green
+                const b = pixels[i + 2]; // Blue
+                const brightness = 0.299 * r + 0.587 * g + 0.114 * b;
+
+                // If brightness is above threshold, it's white (0), else black (1)
+                if (brightness > threshold) {
+                    binaryString += '0';
+                } else {
+                    binaryString += '1';
+                }
+            }
+            return binaryString;
+        }
+
+        // Function to copy the binary code to the clipboard
+        function copyBinaryCode() {
+            const binaryCode = document.getElementById('binaryCode');
+            binaryCode.select();
+            document.execCommand('copy');
+            alert('Binary code copied to clipboard!');
+        }
+
+        // Function to generate image from binary code
+        function generateImage() {
+            // Get input values
+            const width = parseInt(document.getElementById('width').value);
+            const height = parseInt(document.getElementById('height').value);
+            const binaryData = document.getElementById('binary').value.trim();
+
+            // Check if the binary data length matches the area of the image
+            if (binaryData.length !== width * height) {
+                alert('Binary data length must match width * height (e.g., 8x8 grid requires 64 bits).');
+                return;
+            }
+
+            // Create a canvas to draw the image
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+
+            // Fill the canvas with the image data
+            let index = 0;
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    // Get the current bit (either 0 or 1)
+                    const bit = binaryData.charAt(index);
+                    index++;
+
+                    // Set the pixel color based on the bit
+                    if (bit === '1') {
+                        ctx.fillStyle = 'black';
+                    } else if (bit === '0') {
+                        ctx.fillStyle = 'white';
+                    } else {
+                        // Invalid bit value, should be either '0' or '1'
+                        alert('Binary code must only contain 0 and 1.');
+                        return;
+                    }
+
+                    // Draw a square for each pixel
+                    ctx.fillRect(x, y, 1, 1);
+                }
+            }
+
+            // Now, scale the image to 200x200 pixels, keeping the blocky look
+            const newWidth = 200;
+            const newHeight = 200;
+
+            // Calculate the scaling factor for each "pixel"
+            const scaleX = newWidth / width;
+            const scaleY = newHeight / height;
+
+            // Create a new canvas to hold the resized, blocky image
+            const resizedCanvas = document.createElement('canvas');
+            const resizedCtx = resizedCanvas.getContext('2d');
+            resizedCanvas.width = newWidth;
+            resizedCanvas.height = newHeight;
+
+            // Loop through each "block" and fill it with the corresponding color
+            let indexBlock = 0;
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    // Get the current bit (either 0 or 1)
+                    const bit = binaryData.charAt(indexBlock);
+                    indexBlock++;
+
+                    // Set the pixel color based on the bit
+                    if (bit === '1') {
+                        resizedCtx.fillStyle = 'black';
+                    } else if (bit === '0') {
+                        resizedCtx.fillStyle = 'white';
+                    }
+
+                    // Scale each "pixel" into a larger block (e.g., 25x25 pixels for an 8x8 image)
+                    resizedCtx.fillRect(x * scaleX, y * scaleY, scaleX, scaleY);
+                }
+            }
+
+            // Update the displayed canvas with the resized image
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+            ctx.clearRect(0, 0, newWidth, newHeight); // Clear the original canvas content
+            ctx.drawImage(resizedCanvas, 0, 0); // Draw the resized image with pixelated look
+        }
+    </script>
+</body>
+</html>

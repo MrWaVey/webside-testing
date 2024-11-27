@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between; /* Align sections to the left and right */
+    margin: 20px;
+    gap: 20px;
+}
+#left-section, #right-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Allow sections to take equal width */
+    padding: 20px;
+}
+#canvas-container {
+    margin-top: 20px;
+}
+canvas {
+    border: 1px solid #000;
+}
+.info {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+#binaryCodeContainer {
+    margin-top: 20px;
+}
+#imageUpload {
+    margin-bottom: 10px;
+}
+#binaryCodeContainer button {
+    margin-top: 10px;
+}
+
+/* For image and content placement */
+.flex-image {
+    flex: 2; /* Take up more space (2 parts) */
+}
+.flex-content {
+    flex: 1; /* Take up less space (1 part) */
+}
