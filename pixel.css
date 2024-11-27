@@ -5,7 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #374151
+    background-color: #374151;
 }
 
 header {
@@ -13,24 +13,30 @@ header {
     margin-top: 20px; /* Gir litt plass på toppen */
     margin-bottom: 20px;
     width: 100%;
-    color: white;
 }
 
 header a {
     display: inline-block;
     margin-top: 10px;
     font-size: 16px;
-    color: white;
 }
 
-/* Center content and give some space between sections */
+/* For the two sections (left and right) */
 #left-section, #right-section {
     display: flex;
     flex-direction: column;
     flex: 1;
     padding: 20px;
     margin-bottom: 20px;
-    color: white;
+}
+
+/* Make sure the sections are placed side by side */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Limit the width to make it look better on large screens */
+    gap: 20px;
 }
 
 #canvas-container {
@@ -38,13 +44,12 @@ header a {
 }
 
 canvas {
-    border: 1px solid #ffffff;
+    border: 1px solid #000;
 }
 
 .info {
     font-size: 1.2em;
     margin-top: 10px;
-    color: white;
 }
 
 #binaryCodeContainer {
