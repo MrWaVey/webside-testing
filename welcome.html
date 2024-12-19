@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>julekalendren</title>
+    <link rel="stylesheet" href="welcome.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playwrite+DE+VA+Guides&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header><h1 id="welcomeMessage">Hei, [Navn]! Velkommen til denne julekalendren.</h1></header>
+    <br>
+    <section>
+
+        <article onclick="window.location.href='D1.html'">
+            Dag 1
+        </article>
+
+        <article onclick="window.location.href='D2.html'">
+            Dag 2
+        </article>
+
+        <article onclick="window.location.href='D3.html'">
+            Dag 3
+        </article>
+
+        <article onclick="window.location.href='D4.html'">
+            Dag 4
+        </article>
+
+        <article onclick="window.location.href='D5.html'">
+            Dag 5
+        </article>
+
+        <article onclick="window.location.href='D6.html'">
+            Dag 6
+        </article>
+
+        <article onclick="window.location.href='D7.html'">
+            Dag 7
+        </article>
+
+        <article onclick="window.location.href='D8.html'">
+            Dag 8
+        </article>
+
+        <article onclick="window.location.href='D9.html'">
+            Dag 9
+        </article>
+
+        <article onclick="window.location.href='D10.html'">
+            Dag 10
+        </article>
+
+        <article onclick="window.location.href='D11.html'">
+            Dag 11
+        </article>
+
+        <article onclick="window.location.href='D12.html'">
+            Dag 12
+        </article>
+
+        <article onclick="window.location.href='D13.html'">
+            Dag 13
+        </article>
+
+        <article onclick="window.location.href='D14.html'">
+            Dag 14
+        </article>
+
+        <article onclick="window.location.href='D15.html'">
+            Dag 15
+        </article>
+
+        <article onclick="window.location.href='D16.html'">
+            Dag 16
+        </article>
+
+        <article onclick="window.location.href='D17.html'">
+            Dag 17
+        </article>
+
+        <article onclick="window.location.href='D18.html'">
+            Dag 18
+        </article>
+
+        <article onclick="window.location.href='D19.html'">
+            Dag 19
+        </article>
+
+        <article onclick="window.location.href='D20.html'">
+            Dag 20
+        </article>
+
+        <article onclick="window.location.href='D21.html'">
+            Dag 21
+        </article>
+
+        <article class="two-kolonner" onclick="window.location.href='D22.html'">
+            Dag 22
+        </article>
+
+        <article class="two-kolonner" onclick="window.location.href='D23.html'">
+            Dag 23
+        </article>
+
+        <article class="tre-kolonner" onclick="window.location.href='D24.html'">
+            Dag 24
+        </article>
+    </section>
+
+
+
+
+
+    <!-- henter parameteren fra URLen og viser navnet i velkomstmeldingen -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        if (name) {
+            document.getElementById('welcomeMessage').innerText = 'Hei, ' + name + '! Velkommen til Julekalendren.';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+body{
+    background-color: rgb(58, 182, 58);
+    color: rgb(49, 43, 43);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px 200px 200px 200px;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px;
+    scale: auto;
+    gap: 15px 10px;
+}
+
+article {
+    background-color: rgb(185, 52, 52);
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px black ;
+    cursor: pointer;
+    font-family: "Pacifico", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+}
+
+article:hover{
+    transform: scale(1.1);
+}
+
+header{
+    background-color: white;
+    border-radius: 25px;
+    height: 65px;
+    width: 1458px;
+    border: solid 2px black ;
+    font-family: "Pacifico", serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.two-kolonner { grid-column: span 2; }
+
+.tre-kolonner { grid-column: span 3; }
+
+.fire-kolonner { grid-column: span 4; }
+
+
+
+.fire-row { grid-row: span 4; }
+
+.two-row{ grid-row: span 2;}
+
+.one-row{ grid-row: span 1;}
+
+a{
+    color: white;
+}
+  

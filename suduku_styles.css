@@ -1,0 +1,90 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f7f7f7;
+    background-image: url('bilde/julebilde.png'); /* Sett riktig sti til bildet */
+    background-size: cover;  /* Fyller hele bakgrunnen */
+    background-position: center;  /* Sentrerer bildet */
+    background-attachment: fixed;
+    color: rgb(0, 0, 0);
+  }
+
+  #timer{
+    color: white;
+  }
+  
+  button{
+    border-radius: 25px;
+    height: 25px;     /* Høyde */
+    font-size: 16px;   /* Skift font-størrelse */
+  }
+
+  #game {
+    text-align: center;
+    
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+  }
+  
+  td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ddd; /* Standard linje for celler */
+    
+  }
+  
+  /* Tykkere linje rundt hver 3x3 blokk (inkludert øverste rad) */
+  tr:nth-child(3n) td {
+    border-bottom: 2px solid black; /* Tykkere linje på de siste radene */
+  }
+  
+  td:nth-child(3n) {
+    border-right: 2px solid black; /* Tykkere kantlinje på slutten av blokkene */
+  }
+  
+  td:nth-child(1), td:nth-child(2), td:nth-child(3),
+  td:nth-child(4), td:nth-child(5), td:nth-child(6),
+  td:nth-child(7), td:nth-child(8), td:nth-child(9),
+  tr:nth-child(1), tr:nth-child(2), tr:nth-child(3),
+  tr:nth-child(4), tr:nth-child(5), tr:nth-child(6),
+  tr:nth-child(7), tr:nth-child(8), tr:nth-child(9) {
+    border: 1px solid #ddd;
+  }
+  
+  td:nth-child(3), td:nth-child(6), td:nth-child(9) {
+    border-right: 2px solid black; /* Tykkere kantlinje på slutten av blokkene */
+  }
+  
+  td:nth-child(1), td:nth-child(4), td:nth-child(7) {
+    border-left: 2px solid black; /* Tykkere kantlinje på starten av blokkene */
+  }
+  
+  tr:nth-child(3n) {
+    border-bottom: 2px solid black; /* Tykkere kantlinje på den siste raden i hver 3x3 blokk */
+  }
+  
+  /* Legg til tykk linje på den første raden */
+  tr:nth-child(1) td{
+    border-top: 2px solid black; /* Tykkere linje på toppen av første blokk */
+  }
+  
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  

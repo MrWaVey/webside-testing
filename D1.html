@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Spill</title>
+  <link rel="stylesheet" href="suduku_styles.css">
+</head>
+<body>
+  <div id="game">
+    <h1>Sudoku</h1>
+    <table id="sudoku-board">
+      <!-- Sudoku grid will be created by JavaScript -->
+    </table>
+    <div id="timer">Tid: <span id="time">00:00</span></div>
+    <button id="checkBtn">Sjekk løsning</button>
+  </div>
+  
+  <div id="success" style="display:none;">
+    <h1>Gratulerer! Du har løst Sudoku!</h1>
+    <p>Du brukte <span id="elapsed-time"></span> på å fullføre spillet.</p>
+    <p>Bra jobba!</p>
+    <button onclick="location.reload()">Spill igjen</button>
+  </div>
+
+  <script>
+    // Sudoku grid (example, can be more complex)
+const initialGrid = [
+  [0, 0, 0, 7, 0, 0, 2, 1, 8],
+  [7, 5, 1, 0, 0, 2, 4, 9, 0],
+  [0, 0, 0, 0, 9, 6, 7, 5, 3],
+  [0, 1, 0, 3, 0, 8, 0, 0, 2],
+  [0, 6, 0, 0, 0, 0, 0, 8, 5],
+  [8, 2, 9, 5, 0, 0, 0, 7, 0],
+  [1, 0, 0, 0, 5, 0, 0, 4, 9],
+  [0, 7, 6, 0, 0, 4, 5, 0, 0],
+  [0, 0, 0, 6, 0, 3, 8, 0, 0]
+];
+
+let currentTime = 0;
+let timer;
+let startTime;
+const board = document.getElementById('sudoku-board');
+const timeDisplay = document.getElementById('time');
+const checkBtn = document.getElementById('checkBtn');
+const successScreen = document.getElementById('success');
+const elapsedTimeDisplay = document.getElementById('elapsed-time');
+let selectedCell = null;
+
+// Start timer function
+function startTimer() {
+  startTime = Date.now();
+  timer = setInterval(function () {
+    const elapsed = Date.now() - startTime;
+    currentTime = elapsed;
+    const seconds = Math.floor(elapsed / 1000);
+    const minutes = Math.floor(seconds / 60);
+    timeDisplay.textContent = `${pad(minutes)}:${pad(seconds % 60)}`;
+  }, 1000);
+}
+
+// Pad function for formatting time
+function pad(n) {
+  return n < 10 ? '0' + n : n;
+}
+
+// Create the Sudoku board
+function createBoard() {
+  for (let row = 0; row < 9; row++) {
+    const tr = document.createElement('tr');
+    for (let col = 0; col < 9; col++) {
+      const td = document.createElement('td');
+      td.dataset.row = row;
+      td.dataset.col = col;
+
+      if (initialGrid[row][col] !== 0) {
+        td.textContent = initialGrid[row][col];
+      } else {
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.max = 9;
+        input.min = 1;
+        td.appendChild(input);
+      }
+
+      // Add event listener for cell click to highlight it
+      td.addEventListener('click', function () {
+        if (selectedCell) {
+          selectedCell.classList.remove('selected');
+        }
+        selectedCell = td;
+        td.classList.add('selected');
+        highlightSameNumber(td); // Highlight all cells with the same number
+      });
+
+      tr.appendChild(td);
+    }
+    board.appendChild(tr);
+  }
+}
+
+// Function to highlight all cells with the same number
+function highlightSameNumber(cell) {
+  const cells = board.getElementsByTagName('td');
+  const selectedNumber = cell.textContent.trim(); // Get the value of the clicked cell
+
+  // Remove previous highlights
+  for (let i = 0; i < cells.length; i++) {
+    const currentCell = cells[i];
+    currentCell.classList.remove('highlighted'); // Remove previous highlight
+    const input = currentCell.querySelector('input');
+    if (input && input.value === selectedNumber) {
+      currentCell.classList.add('highlighted');
+    }
+  }
+
+  // Also highlight if the selected cell itself contains a number
+  if (selectedNumber !== '' && selectedNumber !== '0') {
+    const input = cell.querySelector('input');
+    if (input && input.value === selectedNumber) {
+      cell.classList.add('highlighted');
+    }
+  }
+}
+
+// Check if the Sudoku solution is correct
+function checkSolution() {
+  let isCorrect = true;
+  const cells = board.getElementsByTagName('td');
+  let solution = [];
+
+  // Create a 2D array for user input
+  let userGrid = [];
+  for (let i = 0; i < 9; i++) {
+    userGrid[i] = [];
+    for (let j = 0; j < 9; j++) {
+      const cell = cells[i * 9 + j].querySelector('input');
+      userGrid[i][j] = cell ? parseInt(cell.value) : initialGrid[i][j];
+    }
+  }
+
+  // Check rows, columns, and 3x3 grids
+  for (let i = 0; i < 9; i++) {
+    const row = new Set();
+    const col = new Set();
+    for (let j = 0; j < 9; j++) {
+      if (row.has(userGrid[i][j]) || col.has(userGrid[j][i])) {
+        isCorrect = false;
+        break;
+      }
+      row.add(userGrid[i][j]);
+      col.add(userGrid[j][i]);
+    }
+  }
+
+  // If solution is correct, show success message
+  if (isCorrect) {
+    clearInterval(timer);
+    const elapsedSeconds = Math.floor(currentTime / 1000);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    elapsedTimeDisplay.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    successScreen.style.display = 'block';
+    document.getElementById('game').style.display = 'none';
+  } else {
+    alert('Løsningen er feil. Prøv igjen!');
+  }
+}
+
+// Initialize the game
+createBoard();
+startTimer();
+
+// Event listener for checking the solution
+checkBtn.addEventListener('click', checkSolution);
+
+  </script>
+</body>
+</html>

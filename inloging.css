@@ -1,0 +1,32 @@
+body{
+    background-color: rgb(185, 52, 52);
+    color: black;
+    text-align: center;
+    font-family: "Pacifico", serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 40px;
+    background-image: url('bilde/julebilde.png'); /* Sett riktig sti til bildet */
+    background-size: cover;  /* Fyller hele bakgrunnen */
+    background-position: center;  /* Sentrerer bildet */
+    background-attachment: fixed;
+}
+
+input{
+    border-radius: 25px;
+    width: 100%;      /* Full bredde */
+    max-width: 500px;  /* Maksimal bredde */
+    height: 20px;     /* Høyde */
+    font-size: 16px;   /* Skift font-størrelse */
+    padding: 10px;     /* Padding rundt teksten */
+}
+
+button{
+    border-radius: 25px;
+    height: 50px;     /* Høyde */
+    font-size: 16px;   /* Skift font-størrelse */
+}
+
+button:hover{
+    background-color: rgb(93, 93, 93);
+}

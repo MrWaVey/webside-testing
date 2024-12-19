@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>in logging</title>
+    <link rel="stylesheet" href="inloging.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playwrite+DE+VA+Guides&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <br>
+    <header><h1>Logg in for å Starte</h1></header>
+    
+    <form id="nameForm" action="welcome.html" method="get" onsubmit="return false;">
+        <input type="text" id="name" name="name" placeholder="Skriv inn navnet ditt">
+        <button type="submit" onclick="redirectToWelcomePage()">Send</button>
+    </form>
+
+    <script>
+        function redirectToWelcomePage() {
+            var name = document.getElementById('name').value;
+            if (name) {
+                // Lager en URL med navnet som en parameter
+                window.location.href = 'welcome.html?name=' + encodeURIComponent(name);
+            } else {
+                alert("Vennligst skriv inn navnet ditt!");
+            }
+        }
+    </script>
+
+</body>
+</html>
