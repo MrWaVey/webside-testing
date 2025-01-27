@@ -1,0 +1,393 @@
+/* Generell styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #292929;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #292929;
+    color: #fff;
+  }
+  
+  header .logo h1 {
+    font-size: 24px;
+  }
+  
+  header nav ul {
+    display: flex;
+    list-style-type: none;
+  }
+  
+  header nav ul li {
+    margin-left: 20px;
+  }
+  
+  header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  header nav ul li a:hover {
+    color: #3498db;
+  }
+  
+  /* Intro */
+  .intro {
+    text-align: center;
+    padding: 50px;
+    background-color: #fff;
+    color: #333;
+    height: 450px;
+  }
+  
+  .intro h2 {
+    margin-bottom: 20px;
+  }
+  
+  .intro .cta-button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .intro .cta-button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Butikk */
+  .store {
+    padding: 20px;
+    background-color: #f4f4f4;
+    text-align: center;
+    min-height: 600px; /* Justering for å sikre bakgrunnsutvidelse */
+  }
+  
+  /* Butikk Heading */
+  .store-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .store-heading h2 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  /* Dropdown */
+  .dropdown-container {
+    position: relative;
+  }
+  
+  /* Dropdown */
+  .dropdown-container {
+    position: relative;
+  }
+  
+  .dropdown-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;  /* Justert for bedre visning */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .dropdown-content {
+    display: none;
+    background-color: white;
+    padding: 20px; /* Økt padding for mer plass */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 100%;  /* Flyttet dropdownen litt ned for å få plass til innholdet */
+    right: 0;
+    width: 320px;  /* Økt bredde for å gi plass til innhold */
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 20;
+    border-radius: 8px;  /* Gir avrundede hjørner på dropdownen */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);  /* Begynner å vises med en liten animasjon */
+  }
+  
+  .show-dropdown {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);  /* For at dropdownen skal komme ut med animasjon */
+  }
+  
+  .dropdown-content .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  /* For å gjøre checkboxene horisontalt parallelle */
+  .dropdown-content .tags-filter {
+    display: flex;
+    flex-wrap: wrap; /* Elementene brytes over flere linjer hvis det ikke er plass */
+    gap: 15px; /* Mellomrom mellom checkboxene */
+    justify-content: flex-start; /* Plasserer elementene på venstre side */
+  }
+  
+  .dropdown-content .tags-filter label {
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Sørger for at teksten er i linje med checkboxen */
+    gap: 5px; /* Liten avstand mellom checkbox og tekst */
+  }
+  
+  /* For å justere marginen på checkboxene om nødvendig */
+  .dropdown-content .tags-filter input[type="checkbox"] {
+    margin: 0;
+    transform: scale(1.2);  /* Litt større størrelse på checkboxene for bedre synlighet */
+  }
+  
+  
+  /* Produktgalleri */
+  .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .product-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .product-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card .price {
+    font-size: 16px;
+    color: #3498db;
+    margin-bottom: 10px;
+  }
+  
+  .product-card .add-to-cart {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .product-card .add-to-cart:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Skjult informasjon (bare synlig ved hover) */
+  .product-card .info {
+    position: absolute;
+    bottom: 150px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+  }
+  
+  /* Vis informasjon på hover */
+  .product-card:hover .info {
+    opacity: 1;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+  }
+  
+  .product-card img, .product-card h3, .product-card .price, .product-card .add-to-cart {
+    transition: none;
+  }
+  
+  /* Popup-stil */
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow: auto;
+  }
+  .popup-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  .popup-content img {
+    max-height: 300px;
+    object-fit: cover;
+    width: 40%;
+  }
+  .popup-info {
+    width: 55%;
+    padding-left: 20px;
+    text-align: left;
+  }
+  .popup-info h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .popup-info p {
+    font-size: 18px;
+    color: #333;
+  }
+  .popup-info .add-to-cart-btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  .popup-info .add-to-cart-btn:hover {
+    background-color: #2980b9;
+  }
+  .close-btn {
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .close-btn:hover,
+  .close-btn:focus {
+    color: black;
+    cursor: pointer;
+  }
+  
+  /* Styling for handlekurv-ikonet */
+  #cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2980b9;
+    color: white;
+    padding: 15px;
+    border-radius: 25%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling for handlekurv-listen */
+  #cart-list {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background-color: #fff;
+    color: #333;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  #cart-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #cart-list ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    align-items: center;
+  }
+  
+  #cart-list ul li img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  #cart-list .close-btn {
+    text-align: right;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #cart-list .total-price {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 15px;
+  }

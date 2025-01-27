@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spillkort Butikk - Butikk</title>
+    <link rel="stylesheet" href="buttik.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Table Top Bordtennis TTB</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Hjem</a></li>
+                <li><a href="store.html">Butikk</a></li>
+                <li><a href="#">Om Oss</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="store">
+        <div class="store-heading">
+            <h2>Produkter</h2>
+            <div class="dropdown-container">
+                <button class="dropdown-btn" onclick="toggleDropdown()">Søke Filtrer</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <input type="text" id="search" placeholder="Søk etter produkter..." class="search-input">
+                    <div class="tags-filter">
+                        <label><input type="checkbox" class="tag-checkbox" value="racket"> Racket</label>
+                        <label><input type="checkbox" class="tag-checkbox" value="baller"> Baller</label>
+                        <label><input type="checkbox" class="tag-checkbox" value="nett"> Nett</label>
+                        <label><input type="checkbox" class="tag-checkbox" value="bordtennis"> Bordtennis Bord</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Produktgrid -->
+        <div class="product-grid">
+            <!-- Produkt 1 -->
+            <div class="product-card" data-tags="racket" onclick="openProductInfo('Stiga Royal Carbon 5-star', 'Produkt-bilder/racket-889kr.png', 'Stiga\'s beste racket for proffspillere.', 'Kr 889')">
+                <img src="Produkt-bilder/racket-889kr.png" alt="Stiga Royal Carbon 5-star">
+                <h3>Stiga Royal Carbon 5-star racket</h3>
+                <p class="price">Kr 889</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Stiga Royal Carbon 5-star', 'Kr 889', 'Produkt-bilder/racket-889kr.png')">Legg i Kurv</button>
+                <div class="info">Stiga's beste racket for proffspillere.</div>
+            </div>
+
+            <!-- Produkt 2 -->
+            <div class="product-card" data-tags="baller" onclick="openProductInfo('Bordtennisballer 60 stk', 'Produkt-bilder/bordtennis-baller.png', 'Kvalitetsballer for alle nivåer.', 'Kr 349')">
+                <img src="Produkt-bilder/bordtennis-baller.png" alt="Bordtennisballer 60 stk">
+                <h3>Bordtennisballer 60 stk</h3>
+                <p class="price">Kr 349</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Bordtennisballer 60 stk', 'Kr 349', 'Produkt-bilder/bordtennis-baller.png')">Legg i Kurv</button>
+                <div class="info">Kvalitetsballer for alle nivåer.</div>
+            </div>
+
+            <!-- Produkt 3 -->
+            <div class="product-card" data-tags="bordtennis" onclick="openProductInfo('Kaiser Bordtennis Bord', 'Produkt-bilder/bordtennis-table.png', 'Brettbart bordtennisbord, perfekt for små rom.', 'Kr 3500')">
+                <img src="Produkt-bilder/bordtennis-table.png" alt="Kaiser Bordtennis Bord">
+                <h3>Kaiser Bordtennis Bord</h3>
+                <p class="price">Kr 3500</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Kaiser Bordtennis Bord', 'Kr 3500', 'Produkt-bilder/bordtennis-table.png')">Legg i Kurv</button>
+                <div class="info">Brettbart bordtennisbord, perfekt for små rom.</div>
+            </div>
+
+            <!-- Produkt 4 -->
+            <div class="product-card" data-tags="nett" onclick="openProductInfo('Bordtennis Nett Easy Setup', 'Produkt-bilder/bordtennis-nett.png', 'Enkelt å sette opp.', 'Kr 199')">
+                <img src="Produkt-bilder/bordtennis-nett.png" alt="Bordtennis Nett Easy Setup">
+                <h3>Bordtennis Nett Easy Setup</h3>
+                <p class="price">Kr 199</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Bordtennis Nett Easy Setup', 'Kr 199', 'Produkt-bilder/bordtennis-nett.png')">Legg i Kurv</button>
+                <div class="info">Enkelt og raskt å sette opp.</div>
+            </div>
+
+            <!-- Produkt 5 -->
+            <div class="product-card" data-tags="racket" onclick="openProductInfo('Stiga Carbon Racket', 'Produkt-bilder/Stiga Carbon Blade.png', 'Lett og balansert racket for erfarne spillere.', 'Kr 1000')">
+                <img src="Produkt-bilder/Stiga Carbon Blade.png" alt="Stiga Carbon Racket">
+                <h3>Stiga Carbon Racket</h3>
+                <p class="price">Kr 1000</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Stiga Carbon Racket', 'Kr 1000', 'Produkt-bilder/Stiga Carbon Blade.png')">Legg i Kurv</button>
+                <div class="info">Lett og balansert racket for erfarne spillere.</div>
+            </div>
+
+            <!-- Produkt 6 -->
+            <div class="product-card" data-tags="baller" onclick="openProductInfo('Bordtennisballer 100 stk', 'Produkt-bilder/Bordtennisballer 100 stk.png', 'Stor pakke med 100 baller for intensiv trening.', 'Kr 599')">
+                <img src="Produkt-bilder/Bordtennisballer 100 stk.png" alt="Bordtennisballer 100 stk">
+                <h3>Bordtennisballer 100 stk</h3>
+                <p class="price">Kr 599</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Bordtennisballer 100 stk', 'Kr 599', 'Produkt-bilder/Bordtennisballer 100 stk.png')">Legg i Kurv</button>
+                <div class="info">Stor pakke med 100 baller for intensiv trening.</div>
+            </div>
+
+            <!-- Produkt 7 -->
+            <div class="product-card" data-tags="racket" onclick="openProductInfo('Pro Bordtennis Racket', 'Produkt-bilder/Pro Bordtennis Brett.png', 'Proffbordtennisbord for konkurransespill.', 'Kr 4500')">
+                <img src="Produkt-bilder/Pro Bordtennis Brett.png" alt="Pro Bordtennis Racket">
+                <h3>Pro Bordtennis Racket</h3>
+                <p class="price">Kr 4500</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Pro Bordtennis Racket', 'Kr 4500', 'Produkt-bilder/Pro Bordtennis Brett.png')">Legg i Kurv</button>
+                <div class="info">Proff bordtennisbord for konkurransespill.</div>
+            </div>
+
+            <!-- Produkt 8 -->
+            <div class="product-card" data-tags="nett" onclick="openProductInfo('Pro Bordtennis Nett', 'Produkt-bilder/Pro Bordtennis Nett.png', 'Høykvalitets nett for profesjonelle spillere.', 'Kr 399')">
+                <img src="Produkt-bilder/Pro Bordtennis Nett.png" alt="Pro Bordtennis Nett">
+                <h3>Pro Bordtennis Nett</h3>
+                <p class="price">Kr 399</p>
+                <button class="add-to-cart" onclick="addToCart(event, 'Pro Bordtennis Nett', 'Kr 399', 'Produkt-bilder/Pro Bordtennis Nett.png')">Legg i Kurv</button>
+                <div class="info">Høykvalitets nett for profesjonelle spillere.</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Table Top Bordtennis TTB | Alle rettigheter reservert</p>
+    </footer>
+
+    <!-- Popup Modal -->
+    <div id="product-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeProductInfo()">&times;</span>
+            <img id="popup-img" src="" alt="Produkt bilde">
+            <div class="popup-info">
+                <h3 id="popup-title"></h3>
+                <p id="popup-price"></p>
+                <p id="popup-description"></p>
+                <button class="add-to-cart-btn" onclick="addToCartFromPopup()">Legg i Kurv</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Handlekurv Icon -->
+    <div id="cart-icon" onclick="toggleCartList()">
+        <span id="cart-count">0</span> 🛒
+    </div>
+
+    <!-- Handlekurv Liste -->
+    <div id="cart-list">
+        <div class="close-btn" onclick="toggleCartList()">×</div>
+        <h3>Handlekurv</h3>
+        <ul id="cart-items-list">
+            <!-- Produkter som er lagt til vises her -->
+        </ul>
+        <div class="total-price" id="total-price">Total: Kr 0</div>
+    </div>
+
+    <script>
+        // Lytter på endringer i søkefeltet og tagg-checkboxene
+        document.getElementById('search').addEventListener('input', filterProducts);
+
+        const checkboxes = document.querySelectorAll('.tag-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', filterProducts);
+        });
+
+        function filterProducts() {
+            const searchValue = document.getElementById('search').value.toLowerCase();
+            const selectedTags = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+
+            const products = document.querySelectorAll('.product-card');
+
+            products.forEach(product => {
+                const productName = product.querySelector('h3').textContent.toLowerCase();
+                const productTags = product.getAttribute('data-tags').split(',');
+
+                const matchesSearch = productName.includes(searchValue);
+                const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => productTags.includes(tag));
+
+                if (matchesSearch && matchesTags) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Funksjon for å åpne/lukke dropdown
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown-content');
+            dropdown.classList.toggle('show-dropdown');
+        }
+ 
+
+        let cartCount = 0;
+const cart = [];
+let totalPrice = 0;
+
+function addToCart(event, productName, price, imgSrc) {
+    event.stopPropagation(); // Forhindre at popupen vises
+    const priceValue = parseFloat(price.replace('Kr ', '').replace(',', '.')); // Konverter prisen til float
+    cart.push({ productName, price, imgSrc });
+    cartCount++;
+    totalPrice += priceValue;
+
+    document.getElementById('cart-count').textContent = cartCount;
+
+    // Legg til produkt i handlekurv-liste
+    updateCartList();
+
+    alert(`Produktet "${productName}" er lagt i kurv!`);
+}
+
+function updateCartList() {
+    const cartList = document.getElementById('cart-items-list');
+    cartList.innerHTML = ""; // Tøm listen først
+
+    cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        
+        // Bilde, navn, pris og fjern-knapp
+        li.innerHTML = `
+            <img src="${item.imgSrc}" alt="${item.productName}">
+            <span>${item.productName}</span>
+            <span>${item.price}</span>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Fjern</button>
+        `;
+        cartList.appendChild(li);
+    });
+
+    // Oppdater totalpris
+    document.getElementById('total-price').textContent = `Total: Kr ${totalPrice.toFixed(2)}`;
+}
+
+function removeFromCart(index) {
+    const removedItem = cart.splice(index, 1)[0]; // Fjern produktet fra cart-arrayen
+    cartCount--;
+    totalPrice -= parseFloat(removedItem.price.replace('Kr ', '').replace(',', '.')); // Trekk fra prisen på produktet
+
+    // Oppdater handlekurv-telleren og totalprisen
+    document.getElementById('cart-count').textContent = cartCount;
+
+    // Oppdater handlekurvlisten
+    updateCartList();
+}
+
+function openProductInfo(title, imgSrc, description, price) {
+    document.getElementById('popup-title').textContent = title;
+    document.getElementById('popup-img').src = imgSrc;
+    document.getElementById('popup-description').textContent = description;
+    document.getElementById('popup-price').textContent = price;
+
+    document.getElementById('product-popup').style.display = 'block';
+}
+
+function closeProductInfo() {
+    document.getElementById('product-popup').style.display = 'none';
+}
+
+function addToCartFromPopup() {
+    const title = document.getElementById('popup-title').textContent;
+    const price = document.getElementById('popup-price').textContent;
+    const imgSrc = document.getElementById('popup-img').src;
+
+    addToCart(event, title, price, imgSrc);
+    closeProductInfo();
+}
+
+function toggleCartList() {
+    const cartList = document.getElementById('cart-list');
+    cartList.style.display = cartList.style.display === 'none' || cartList.style.display === '' ? 'block' : 'none';
+}
+
+function toggleDropdown() {
+    const dropdown = document.getElementById('dropdown-content');
+    dropdown.classList.toggle('show-dropdown');
+}
+
+    </script>
+</body>
+</html>
